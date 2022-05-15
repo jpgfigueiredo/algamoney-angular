@@ -1,0 +1,35 @@
+<div class="container">
+  <div class="p-grid">
+
+    <div class="p-col-12">
+      <h1>Lançamentos</h1>
+    </div>
+
+    <div class="p-col-12 p-fluid margem-baixo-24">
+      <label>Descrição</label>
+      <input pInputText type="text">
+    </div>
+
+    <div class="p-col-12 margem-baixo-24">
+      <label style="display: block;">Vencimento</label>
+      <input pInputText type="text" style="width: 95px">
+
+      <label>Até</label>
+      <input pInputText type="text" style="width: 95px">
+    </div>
+
+    <div class="p-col-12 margem-baixo-24">
+      <button pButton type="submit" label="Pesquisar"></button>
+    </div>
+
+    <div class="p-grid">
+      <div class="p-col-12">
+        <!-- Chamando um component lancamentos-grid e passando o parametro de lancamentos e utilizar o @input dentro do component.ts da lancamentos-grid -->
+        <app-lancamentos-grid [lancamentos]="lancamentos"></app-lancamentos-grid>
+      </div>
+    </div>
+
+    <a pButton label="Novo Lançamento" class="margem-cima-24"></a>
+
+  </div>
+</div>

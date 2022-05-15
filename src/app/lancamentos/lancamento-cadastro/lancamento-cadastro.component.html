@@ -1,0 +1,73 @@
+<div class="container">
+  <form #cadastroLancForm="ngForm" (ngSubmit)="salvar(cadastroLancForm)" autocomplete="off">
+
+    <div class="grid">
+      <div class="col-12 margem-cima-24">
+        <h1>Novo Lançamento</h1>
+      </div>
+
+      <div class="col-12">
+        <p-selectButton [options]="tipos" #tipo></p-selectButton>
+      </div>
+
+      <div class="col-6 md-3 p-fluid">
+        <label for="vencimento">Vencimento</label>
+        <p-calendar name="vencimento" inputId="vencimento" dateFormat="dd/mm/yy" [inline]="false"
+          [readonlyInput]="false" ngModel #vencimento="ngModel" [required]="true" [showIcon]="true"></p-calendar>
+
+        <app-message [control]="vencimento.control" error="required" text="Informe uma data de vencimento">
+        </app-message>
+      </div>
+
+      <div class="col-6 md-3 p-fluid">
+        <label>{{ tipo.value === 'RECEITA' ? 'Recebimento' : 'Pagamento' }}</label>
+        <p-calendar dateFormat="dd/mm/yy" [showIcon]="true"></p-calendar>
+      </div>
+
+      <div class="col-8 md-6 p-fluid">
+        <label>Descrição</label>
+        <input pInputText name="descricao" type="text" ngModel #descricao="ngModel" required minlength="5">
+
+        <app-message [control]="descricao.control" error="required" text="Informe uma descrição"></app-message>
+        <app-message [control]="descricao.control" error="minlength"
+          text="Mínimo de {{ descricao.errors?.['minlength']?.requiredLength }} caracteres. Você digitou apenas {{ descricao.errors?.['minlength']?.actualLength }}">
+        </app-message>
+      </div>
+
+      <div class="col-4 md-3 p-fluid">
+        <label>Valor</label>
+        <!-- <p-inputNumber name="valor" mode="currency" currency="BRL" placeholder="0,00" ngModel #valor="ngModel"
+          [required]="true">
+        </p-inputNumber> -->
+        <input pInputText name="valor" type="text" placeholder="0,00" currencyMask
+          [options]="{ prefix: '', thousands: '.', decimal: ',', allowNegative: false }" ngModel #valor="ngModel"
+          [required]="true">
+        <app-message [control]="valor.control" error="required" text="Digite um valor">
+        </app-message>
+      </div>
+
+      <div class="col-6 md-6 p-fluid">
+        <label>Categoria</label>
+        <p-dropdown [options]="categorias" placeholder="Selecione" [filter]="true" #categoria [required]="true">
+        </p-dropdown>
+      </div>
+
+      <div class="col-6 md-6 p-fluid">
+        <label>Pessoa</label>
+        <p-dropdown [options]="pessoas" placeholder="Selecione" #pessoa></p-dropdown>
+      </div>
+
+      <div class="col-12 md-6 p-fluid">
+        <label>Observação</label>
+        <textarea class="col-12 md-6 p-fluid" rows="3" pInputTextarea></textarea>
+      </div>
+
+      <div class="col-12">
+        <button pButton type="submit" label="Salvar" [disabled]="cadastroLancForm.invalid"></button>
+        <button pButton type="button" label="Novo" class="p-button-infos"></button>
+        <a href="javascript:;">Voltar para a pesquisa</a>
+      </div>
+    </div>
+
+  </form>
+</div>

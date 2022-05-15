@@ -1,0 +1,76 @@
+<div class="container">
+  <form #pessoaCadastroForm="ngForm" (ngSubmit)="salvar(pessoaCadastroForm)" autocomplete="off">
+
+    <div class="grid">
+      <div class="col-12 margem-cima-24">
+        <h1>Nova Pessoa</h1>
+      </div>
+
+      <div class="col-12 md-12 p-fluid">
+        <label>Nome</label>
+        <input pInputText name="primeiroNome" type="text" ngModel #nome="ngModel" [required]="true" minlength="5">
+
+        <!-- Mensagens de error #NOME -->
+        <app-message [control]="nome.control" error="required" text="Informe um nome"></app-message>
+        <app-message [control]="nome.control" error="minlength"
+          text="Mínimo de {{ nome.errors?.['minlength']?.requiredLength }} caracteres."></app-message>
+      </div>
+
+      <div class="col-8 md-4 p-fluid">
+        <label>Logradouro</label>
+        <input pInputText name="logradouro" type="text" ngModel #logradouro="ngModel" [required]="true">
+
+        <app-message [control]="logradouro.control" error="required" text="Informe o endereço corretamente">
+        </app-message>
+      </div>
+
+      <div class="col-4 md-4 p-fluid">
+        <label>Número</label>
+        <input pInputText name="numero" type="text" ngModel #numero="ngModel" [required]="true">
+
+        <app-message [control]="numero.control" error="required" text="Informe um número"></app-message>
+      </div>
+
+      <div class="col-4 md-2 p-fluid">
+        <label>Complemento</label>
+        <input pInputText name="complemento" type="text" ngModel>
+      </div>
+
+      <div class="col-4 md-2 p-fluid">
+        <label>Bairro</label>
+        <input pInputText name="bairro" type="text" ngModel #bairro="ngModel" [required]="true">
+
+        <app-message [control]="bairro.control" error="required" text="Informe um bairro"></app-message>
+      </div>
+
+      <div class="col-4 md-2 p-fluid">
+        <label>CEP</label>
+        <p-inputMask name="cep" mask="99.9999-999" ngModel #cep="ngModel" [required]="true"></p-inputMask>
+
+        <app-message [control]="cep.control" error="required" text="Informe um CEP"></app-message>
+      </div>
+
+      <div class="col-6 md-3 p-fluid">
+        <label>Cidade</label>
+        <input pInputText name="cidade" type="text" ngModel #cidade="ngModel" [required]="true">
+
+        <app-message [control]="cidade.control" error="required" text="Informe uma cidade"></app-message>
+      </div>
+
+      <div class="col-6 md-3 p-fluid">
+        <label>Estado</label>
+        <input pInputText name="estado" type="text" ngModel #estado="ngModel" [required]="true">
+
+        <app-message [control]="estado.control" error="required" text="Informe um estado"></app-message>
+      </div>
+
+      <div class="col-12">
+        <button pButton type="submit" label="Salvar" [disabled]="pessoaCadastroForm.invalid"></button>
+        <button pButton type="button" label="Novo" class="p-button-infos"></button>
+        <a href="javascript:;">Voltar para a pesquisa</a>
+      </div>
+
+    </div>
+
+  </form>
+</div>
